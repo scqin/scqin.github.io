@@ -1,0 +1,275 @@
+<html>
+<head>
+<title>EP/G042322/1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<H2 align="center"> Inference Mechanisms for a Separation and Numerical 
+Domain </H2>
+<H3 align="center"> EPSRC Funded Project EP/G042322</H3>
+<H3 align="center"> Principal Investigator: <a href="./index.html">Prof. 
+Shengchao 
+  Qin</a></H3>
+
+<H4 align="center">in collaboration with 
+   <a href="http://www.comp.nus.edu.sg/%7Echinwn">Prof. Wei-Ngan Chin</a> 
+  (NUS) </H4>
+  
+<p>&nbsp;</p> 
+<!--
+<p><b align="left"><a>1. 
+A postdoctoral RA position is available 
+for upto 3.5 years</a>
+  <img class=floatleft src="images/new-red.gif" alt="new">
+  </b> </p>
+<p><b align="left"><a href="http://www.jobs.ac.uk/jobs/BO780/">2. A fully 
+funded Ph.D studentship is 
+available for 3.5 years</a>
+<img class=floatleft src="images/new-red.gif" alt="new">
+  </b> </p>
+  -->
+<p>&nbsp;</p> 
+<p><b>Summary of the project:</b></p>
+<p>The proliferation of software across all aspects of our life means that software 
+  failure can have significant economic and social impact. It is therefore highly 
+  desirable to be able to develop software that is formally verified as correct 
+  with respect to its expected specification. This has also been identified as 
+  a key objective in one of the UK Grand Challenges (GC6). Although research on 
+  formal verification has a long history, dating back to the 1960's, it remains 
+  a challenging problem to automatically verify programs written in mainstream 
+  imperative languages such as C, C++, C# and Java. This is in part due to the 
+  prolific use of (recursive) shared mutable data structures which are difficult 
+  to keep track of statically and in a precise and concise way.</p>
+<p>The emergence of separation logic promotes scalable reasoning via explicit 
+  separation of structural properties over the memory heap where recursive data 
+  structures are dynamically allocated. Using separation logic, progress has  
+  been made on automated verification for pointer safety in the separation/shape 
+  domain. To verify the more general memory safety and functional correctness, 
+  it will require the combination of both separation (structural) and numerical 
+  (e.g. size) information. Therefore, advanced analysis and verification techniques 
+  are needed in the combined separation and numerical domain to verify memory 
+  safety and functional correctness. Nevertheless, this remains a clear challenge 
+  for program analysis research.</p>
+<p>As a first step to tackle the challenge, Our development on program 
+  verification using a combined separation and numerical domain also allows user-specified 
+  inductive predicates to appear in program specifications for better expressivity. 
+  Based on this specification mechanism, a verification system called HIP/SLEEK 
+  has been built by a team led by our collaborator Prof Wei-Ngan Chin to 
+conduct the automated 
+  verification and proof search [SCP12,FM11b]. 
+  The experimental results have confirmed the viability 
+  of this approach. One issue with this system is that it is a liability 
+  for the users to supply all loop invariants and method pre/post-conditions prior 
+  to the verification. This can be very demanding and challenging for the users.</p>
+<p>As the second phase towards tackling the challenge, we propose to develop advanced 
+  inference mechanisms in the combined separation and numerical domain with 
+  user-defined predicates so that loop invariants and method pre/post-conditions can be automatically 
+  synthesised, where possible. Achieving this goal means that a much higher level 
+  of automation will be achieved, therefore a significant advance can be made 
+  in automated verification on memory safety and functional correctness.</p>
+<p> In this project work, we reduce the need of user annotations by automatically 
+inferring loop invariants over an abstract domain with both separation and numerical 
+information [ICFEM10a,JSC13]. Our loop invariant synthesis is conducted automatically 
+by a fixpoint iteration process, equipped with newly designed abstraction mechanism, 
+and join and widening operators. Initial experiments have confirmed that we can 
+synthesise loop invariants with non-trivial constraints.
+</p>
+<p>
+To tackle the problem of method pre-/post-conditions inference, we have proposed two 
+solutions. In one proposal, we allow users to provide only partial specifications to 
+methods/functions (usually in the form of pre/post shape templates),  
+a lightweight static analysis is then employed to automatically discover 
+missing non-trivial constraints 
+in pre/post to obtain complete pre/post specifications for methods/functions 
+[FM11a,SCP14]. This proposal for refining partial specification is aimed at harnessing 
+the synergy between human's insights and machine's capability at automated program 
+analysis. In particular, human's guidance can help narrow down on the most important 
+of the different specifications that are possible with each program code, while 
+automation by machine is important for minimising on the tedium faced by users.
+In another proposal [ICFEM13a], we have designed a compositional analysis framework in 
+the presence of user-defined predicates, which derive the pre/post summary 
+for each method in the expressive abstract domain, independently from its callers. 
+We have also proposed a novel abstraction method with a biabduction technique in the 
+combined domain to discover pre-/post-conditions that could not be automatically 
+inferred before. The analysis does not only prove the memory safety properties, but 
+also finds relationships between pure and shape domains towards full functional 
+correctness of programs. A prototype of the framework has been implemented and 
+initial experiments have shown that our approach can discover interesting properties 
+for non-trivial programs. In a recent work along this line [CAV14] (which takes
+place after the project period) we have made a significant step forward by proposing an advanced shape analysis via  
+second-order bi-abduction to automatically discover pre/post shapes for 
+heap-manipulating programs. This recent achievement complements well 
+with either of the two pieces of work mentioned above.   In another more recent work 
+[PLDI15], we have applied the bi-aduction idea to help guide case-splits in a unified 
+program analysis for termination and non-termination where specifications 
+corresponding to termination and non-termination can be inferred by the same analysis. 
+
+</p>
+<p>During this project period, we have also proposed a novel method to verify
+ memory safety 
+of heap-manipulating programs with unknown procedure calls [JSC10,ICFEM10b]. We have 
+conducted a bigger experiment by verifying the FreeRTOS scheduler [TASE12,STTT14b]. 
+</p>
+
+<p>In summary, a key objective 
+in the proposed research has been to find a systematic approach to 
+  abstraction construction in the combined domain, so that appropriate abstractions 
+  can be employed by the inference process. Abstractions are required in the analysis 
+  and verification for various reasons, such as termination and scalability.
+ Appropriate 
+  abstraction mechanisms are crucial in maintaining a desirable scalability/precision 
+  trade-off. Apart from the abstraction mechanisms, we have also designed analysis 
+  algorithms for loop invariant synthesis, method post-condition inference and 
+  method pre-condition discovery for the combined domain with arbitrary user-defined 
+  predicates. We have built prototype tools to implement these analyses and evaluated them on 
+  various programs. 
+</p>
+<p>Our research outcomes have further improved the level of automation, 
+  and therefore significantly extended the viability and applicability of automated 
+  verification on memory safety as well as functional correctness for  
+  imperative (heap-manipulating) programs.</p>
+<p><b>References</b>: </p>
+<ul>
+
+<li>[PLDI15]
+Ton Chanh Le, Shengchao Qin and Wei-Ngan Chin. Termination and Non-termination 
+Specification Inference. The 36th ACM SIGPLAN Conference on Programming Language 
+Design and Implementation (PLDI'15). Pages 489-498. The ACM Press. Portland, Oregon, 
+United States, 13-17 June, 2015.
+</li>
+
+<li>[CAV14]
+Quang Loc Le, Cristian Gherghina, Shengchao Qin and Wei-Ngan Chin. 
+<a href="https://www.scm.tees.ac.uk/s.qin/papers/cav14.pdf">
+Shape Analysis via Second-Order Bi-Abduction</a>. 26th International Conference on Computer Aided Verification (CAV 2014). July 18-22, 2014. Vienna, Austria.
+</li>
+
+<li>[SCP14]
+Shengchao Qin, Guanhua He, Chenguang Luo, Wei-Ngan Chin, and Hongli Yang. <a href="./papers/SCP-refine.pdf">
+Automatically Refining Partial Specifications for Heap-Manipulating Programs</a>. <em> Science
+of Computer Programming</em>. 82 (2014):56-76. Elsevier.
+</li>
+
+<li>[STTT14a]
+Cristian Gherghina, Cristina David, Shengchao Qin and Wei-Ngan Chin. Expressive Program Verificationvia Structured Specifications. International Journal on Software Tools for Technology Transfer. Springer. 2014.
+</li>
+<li>[STTT14b]
+Joao Ferreira, Cristian Gherghina, Guanhua He, Shengchao Qin and Wei Ngan Chin. Automated Verification of the FreeRTOS Scheduler in HIP/SLEEK. International Journal on Software Tools for Technology Transfer. Springer. 2014.
+</li>
+
+<li>[JSC13]
+Shengchao Qin, Guanhua He, Chenguang Luo, Wei-Ngan Chin, and Xin Chen. <a href="./papers/jsc-loop.pdf">
+Loop Invariant Synthesis in a Combined Abstract Domain</a>.  <em>Journal of Symbolic Computation</em>.
+50 (2013): 386-408. Elsevier. (Available <a href="http://dx.doi.org/10.1016/j.jsc.2012.08.007">online</a>)
+</li>
+
+<li>[ICFEM13a]
+Guanhua He, Shengchao Qin, Wei-Ngan Chin, and Florin Craciun. Automated Specification Discovery via User-Defined Predicates. The 15th International Conference on Formal Engineering Methods (ICFEM'13). LNCS 8144, pp. 398--415. Queenstown, New Zealand, 29 Oct - 1 Nov 2013.
+</li>
+
+<li>[FestHJF13]
+Shengchao Qin, Guanhua He, Wei-Ngan Chin, and Hongli Yang. Invariants Synthesis over a Combined Domain for Automated Program Verification. Theories of Programming and Formal Methods. Essays Dedicated to Jifeng He on the Occasion of His 70th Birthday. LNCS 8051, pp. 304--325. 1-3 September 2013.
+</li>
+
+<li>[SCP12] Wei-Ngan Chin, Cristina David, Huu Hai Nguyen, and
+  Shengchao Qin. <a href="./papers/SCP-hip-sleek.pdf">Automated
+ Verification of Shape, Size and Bag Properties via User-Defined
+Predicates in Separation Logic</a>. <em>Science of Computer Programming</em>.77(9):1006-1036. 2012. 
+Elsevier. (Available <a href="http://dx.doi.org/10.1016/j.scico.2010.07.004">online</a>) </li>
+
+<li>[TASE12]
+Joao Ferreira, Guanhua He, and Shengchao Qin. <a href="./publ.html">Automated Verification of the FreeRTOS
+Scheduler in
+HIP/SLEEK</a>. The 6th International Symposium on Theoretical Aspects of Software Engineering (TASE'12). Beijing,
+China. 4-6 July 2012.
+</li>
+
+<li>[ICFEM12]
+Granville Barnett and Shengchao Qin. <a href="./papers/icfem12.pdf">
+A Composable Mixed Mode Concurrency Control Semantics for Transactional Programs
+</a>.
+The 14th International Conference on Formal Engineering Methods (ICFEM'12).
+Kyoto, Japan, 12-16 November, 2012.
+</li>
+
+<li>[CAV11]
+Wei Ngan Chin, Cristian Gherghina, Razvan Voicu, Quang Loc Le, Florin Craciun and Shengchao Qin. 
+<a href="https://www.scm.tees.ac.uk/s.qin/papers/cav11.pdf">
+A Specialization Calculus for Pruning Disjunctive Predicates to Support Verification</a>. Computer-Aided Verification (CAV 2011). Snowbird, Utah. July 2011. Lecture Notes in Computer Science 6806. Pages 293-309. Springer.
+</li>
+
+
+<li>[FM11a]
+Shengchao Qin, Chenguang Luo, Wei-Ngan Chin, and Guanhua He. <a href="./papers/fm11-refine.pdf">
+Automatically Refining Partial 
+Specifications for Program Verification</a>. <em>Formal Methods</em> (FM2011). Limerick, Ireland. 
+June 2011. Lecture Notes in Computer Science. Springer.
+</li> 
+
+<li>[FM11b]
+Cristian Gherghina, Cristina David, Shengchao Qin, and Wei-Ngan Chin. <a href="./papers/fm11-struct.pdf">
+Structured Specifications for 
+Better Verification of Heap-Manipulating Programs</a>. <em>Formal Methods</em> (FM2011). Limerick, 
+Ireland. June 2011. 
+Lecture Notes in Computer Science. Springer.
+</li>
+
+ <li>[ICFEM10a] Shengchao Qin, Guanhua He, Chenguang Luo, and
+  Wei-Ngan Chin. <a href="./papers/icfem10-loop.pdf">Loop Invariant
+  Synthesis in a Combined Domain</a>. <em>Formal Methods and Software
+  Engineering</em> (ICFEM2010). Shanghai, China. November
+  2010. Lecture Notes in Computer Science. Springer.  
+</li>
+<li>[ICFEM10b] Shengchao Qin, Chenguang Luo, Guanhua He, Florin
+  Craciun, and Wei-Ngan
+  Chin. <a href="./papers/icfem10-unknown.pdf">Verifying
+  Heap-Manipulating Programs with  Unknown Procedure Calls</a>. <em>
+  Formal Methods and  Software Engineering</em> (ICFEM2010). Shanghai,
+  China. November 2010. Lecture Notes in Computer Science. Springer.  
+</li>
+
+
+<li>[JSC10] Chenguang Luo, Florin Craciun, Shengchao Qin, Guanhua He,
+    and Wei-Ngan Chin. <a href="./papers/JSC-WING.pdf">Verifying
+    Pointer Safety for Programs with Unknown Calls</a>.<em> Journal of Symbolic
+    Computation</em>. 45 (11): 1163-1183.  Elsevier. 2010. (Available <a href="http://dx.doi.org/10.1016/j.jsc.2010.06.003">online</a>) 
+</li>
+
+ <li>[WING09] F. Craciun, C. Luo, G. He, S. Qin and W.-N. Chin. Discovering
+    Specifications for Unknown Procedures (Work in Progress). The 2nd
+    International Workshop  
+    on Invariant Generation (WING'09). 29 March 2009, York, United Kingdom.</li>
+  <li>[CAV08] H. H. Nguyen and W.-N. Chin, Enhancing Program
+  Verification with Lemmas,  Computer Aided Verifications (CAV08),
+  July 2008, Princeton, New Jersey.</li> 
+
+ <li>[POPL08] Wei-Ngan Chin, Cristina David, Huu Hai Nguyen, and
+   Shengchao Qin. <a href="./papers/popl08.pdf">Enhancing Modular OO
+   Verification with Separation Logic</a>. The 35th ACM SIGPLAN-SIGACT
+   Symposium on Principles of Programming Languages (POPL 2008). San
+   Francisco, USA. January 10-12, 2008. The ACM Press.  
+</li>
+
+  <li>[VMCAI07] H. H. Nguyen, C. David, S. Qin, and W.-N. Chin,
+    Automated Verification of  
+    Shape and Size Properties via Separation Logic. VMCAI'07. Nice,
+    France. January  
+    2007. Lecture Notes in Computer Science 4349, Springer-Verlag. </li>
+  <li>[ICECCS07]  W.-N. Chin, C. David, H. H. Nguyen, and Shengchao
+    Qin, Automated Verification  
+    of Shape, Size and Bag Properties. 12th IEEE International
+    Conference on Engineering  
+    of Complex Computer Systems (ICECCS'07). Pages 307-320. Auckland,
+    New Zealand.  
+    July 2007. IEEE CS Press.</li>
+  <li>[HASE07]  W.-N. Chin, C. David, H. H. Nguyen, and S. Qin,
+    Multiple Pre/Post Specifications  
+    for Heap-Manipulating Methods. 10th IEEE High Assurance Systems Engineering 
+    Symposium (HASE'07). Dallas, Texas. November 14-16, 2007. IEEE CS
+    Press.</li> 
+ 
+</ul>
+<p>&nbsp;</p>
+</body>
+</html>

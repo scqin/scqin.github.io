@@ -1,0 +1,253 @@
+<html>
+<head>
+<title>EP/E021948/1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-2">
+</head>
+
+<body bgcolor="#FFFFFF" text="#000000">
+<H2 align="center"> Resource Analysis and Verification for Dependable Embedded 
+  Software </H2>
+<H3 align="center"> EPSRC Funded Project EP/E021948/1</H3>
+<H4 align="center">Principal Investigator: <a href="./index.html">Dr. 
+Shengchao Qin</a></H4> 
+<H4 align="center">in collaboration with 
+   <a href="http://www.comp.nus.edu.sg/%7Echinwn">Prof. Wei-Ngan Chin</a> 
+  (NUS, Singapore) </H4>
+
+Embedded software widely exists in home electrical appliances like
+    washing machines, microwave ovens, dryers and dishwashers, in
+    mobile devices like PDAs, navigators, mobile phones and smart
+    cards, as well as in safety critical systems such as military
+    units, medical devices and motor cars. Such systems are often
+    equipped with limited memory footprints due to various constraints
+    on e.g. product size, power consumption and manufacture
+    cost. Paying insufficient attention to resource issues when
+    developing software for such systems may result in a corresponding
+    software failure after deployment. A real example is the anomaly
+    problem of the Mars Rover Spirit which was due to a memory leakage
+    problem ignored in the software development process. In some
+    cases, such software failure may put human lives at risk. It is
+    thus very important to ensure memory safety and guarantee memory
+    adequacy for software running on these systems.</p> 
+    In this project, we study memory safety and memory usage for
+    programs running on embedded devices, where dynamically allocated
+    objects may be present. Our aims are to verify memory safety for
+    such software, to predict statically (i.e. before a program starts
+    to run) and precisely the memory usage bounds and to ensure that
+    such software will never require more memory than the device can
+    provide. </p> 
+     Memory in software systems are typically organised into two main
+    components: stack and heap. Stack is an efficient way for using
+    and recovering memory spaces, and is important for method
+    invocations and transient objects. Heap is used for more complex
+    data structures that may live beyond the method calls where they
+    are created.  Our first objective was accomplished by a
+    multiple-pass analysis which infers automatically memory upper
+    bounds on stack and heap usage for assembly-level programs. The
+    focus on low-level programs was mainly because optimising
+    compilers may render memory analyses done at the source level
+    possibly unsafe to use. The initial experimental results have
+    confirmed the viability of the approach ([ISMM08],[TASE10]).</p> 
+     While the stack bound analysis is generally applicable, the heap
+    bound analysis applies only to programs where mutable objects are
+    not shared. Programs with shared and mutable objects were left
+    into the second objective, for which, we decided to follow a
+    logic-based approach as the originally proposed type-based one
+    ([SAS05],[ICSE05]) is lack of a precise and concise way to specify
+    deep heap properties with must-aliasing and size information. This
+    has proven to be a right move as our new specification language
+    (based on separation logic) allows us to capture precise
+    must-aliasing information for shared mutable objects. It also
+    allows us to capture numerical information (size, memory usage,
+    contents) together with shape information via recursively defined
+    predicates. Our verification system based on this expressive
+    specification mechanism can then automatically verify memory
+    safety (e.g. no dereference to null or dangling pointers), as well
+    as memory usage (i.e. to verify that a program would not require
+    more memory than the device can provide), as shown in our
+    implemented system ([ATVA09],[SCP10]). By conducting automated
+    verification on memory 
+    safety and memory usage for programs with shared and mutable
+    objects, we have accomplished the second objective.</p>
+ Our investigation on the second objective also opened up another
+    challenging research problem: can we automatically compute
+    user-annotations on the shape (incl. aliasing) and size
+    (incl. memory usage) information for programs with shared and
+    mutable objects? This problem is undecidable in general, therefore
+    appropriate abstraction mechanisms would be required. This becomes
+    the main focus of another EPSRC-funded project
+    (<a href="./EP-G042322.html"> EP-G042322</a>).
+</p>
+
+<H4>Software</H4>
+<p>
+<a href="memhip.php"><b>memhip</b></a> - The memory safety and memory usage verifcation tool.
+</p>
+
+<H4> References: </H4>
+<ul>
+
+<li>[ICFEM10a] Shengchao Qin, Guanhua He, Chenguang Luo, and
+  Wei-Ngan Chin. <a href="./papers/icfem10-loop.pdf">Loop Invariant
+  Synthesis in a Combined Domain</a>. <em>Formal Methods and Software
+  Engineering</em> (ICFEM2010). Shanghai, China. November
+  2010. Lecture Notes in Computer Science. Springer.  
+</li>
+<li>[ICFEM10b] Shengchao Qin, Chenguang Luo, Guanhua He, Florin
+  Craciun, and Wei-Ngan
+  Chin. <a href="./papers/icfem10-unknown.pdf">Verifying
+  Heap-Manipulating Programs with  Unknown Procedure Calls</a>. <em>
+  Formal Methods and  Software Engineering</em> (ICFEM2010). Shanghai,
+  China. November 2010. Lecture Notes in Computer Science. Springer.  
+</li>
+
+<li>[SCP10] Wei-Ngan Chin, Cristina David, Huu Hai Nguyen, and
+  Shengchao Qin. <a href="./papers/SCP-hip-sleek.pdf">Automated
+    Verification of Shape, Size and Bag Properties via User-Defined
+    Predicates in Separation Logic</a>. To appear in <em>Science of
+  Computer
+  Programming</em>. Elsevier. (Available <a href="http://dx.doi.org/10.1016/j.scico.2010.07.004">online</a>) </li>   
+
+<li>[TASE10]
+Shengyi Wang, Zongyan Qiu, Shengchao Qin, and Wei-Ngan Chin. Stack
+Bound Inference for Abstract Java Bytecode. The 4th IEEE International
+Symposium on Theoretical Aspects of Software Engineering (TASE 2010),
+Taipei, August 24 - 27, 2010.
+</li>
+
+<li>[JSC10] Chenguang Luo, Florin Craciun, Shengchao Qin, Guanhua He,
+    and Wei-Ngan Chin. <a href="./papers/JSC-WING.pdf">Verifying
+    Pointer Safety for Programs with Unknown Calls</a>. To appear
+    in  <em> Journal of Symbolic
+    Computation</em>. Elsevier. (Available <a href="http://dx.doi.org/10.1016/j.jsc.2010.06.003">online</a>) 
+</li>
+
+<li>[ATVA09] Guanhua He, Shengchao Qin, Chenguang Luo, and Wei-Ngan
+  Chin. <a href="./papers/atva09.pdf">Memory Usage Verification Using
+  Hip/Sleek</a>. The 7th International Symposium on Automated
+  Technology for Verification and Analysis. 14-16 October 2009. Macao
+  SAR, China. Lecture Notes in Computer Science 5799. Pages 166-181. Springer.
+</li>
+
+<li>[WING09] Florin Craciun, Chenguang Luo, Guanhua He, Shengchao Qin
+  and Wei-Ngan Chin. Discovering Specifications for Unknown Procedures
+  (Work in Progress). The 2nd International Workshop on Invariant
+  Generation (WING'09). 29 March 2009, York, United Kingdom.  
+</li>
+
+<li>[ESOP09] Florin Craciun, Wei-Ngan Chin, Guanhua He, and Shengchao
+  Qin. <a href="./papers/esop09.pdf">An Interval-based Inference of
+  Variant Parametric Types</a>. 18th European Symposium on Programming
+  (ESOP'09). 25-27 March 2009, York, United Kingdom.  
+</li>
+
+<li>[APSEC08] Chenguang Luo, Guanhua He, and Shengchao
+  Qin. <a href="./papers/apsec08.pdf">A Heap Model for Java Bytecode
+    to Support Separation Logic</a>. The 15th Asia-Pacific Software Engineering
+Conference(APSEC'08). Beijing, China, 3-5 December 2008. The IEEE CS Press. 
+</li>
+
+<li>[FCSC08] Chenguang Luo, Shengchao Qin, and Zongyan
+  Qiu.<a href="./papers/FCS08.pdf"> Verifying BPEL-like Programs with
+  Hoare Logic</a>. <i style='mso-bidi-font-style:normal'>Frontiers of
+  Computer Science in China</i>. 2(4):344-356, 2008. Springer. ISSN: 1673-7350. 
+</li>
+
+<li>[ICFEM08] Florin Craciun, Shengchao Qin, and Wei-Ngan
+  Chin. <a href="./papers/reg_cal.pdf">A Formal Soundness Proof of
+  Region-based Memory Management for Object-Oriented
+  Paradigm</a>. <i style='mso-bidi-font-style: normal'>Formal Methods
+  and Software Engineering</i> (ICFEM08). Kitakyushu-City,
+  Japan. 27-31 October 2008. Lecture Notes in Computer Science, Volume
+  5256. Pages 126-146.
+</li>
+
+<li>[TASE08] Chenguang Luo, Shengchao Qin, and Zongyan
+  Qiu. <a href="./papers/tase08.pdf">Verifying BPEL-like Programs with
+    Hoare Logic</a>. The 2nd IEEE/IFIP International Symposium on
+  Theoretical Aspects of Software Engineering(TASE'08). Nanjing,
+  China, 17-19 June 2008. The IEEE CS Press. 
+</li>
+
+<li>[ISMM08] Wei-Ngan Chin, Huu Hai Nguyen, Corneliu Popeea, and
+  Shengchao Qin. <a href="./papers/ismm08.pdf">Analysing Memory
+  Resource Bounds for Low-Level Programs</a>. The International
+  Symposium on Memory Management (ISMM'08). 7-8 June, Tucson,
+  Arizona. The ACM Press.  
+</li>
+
+<li>[FICS08] Chenguang Luo and Shengchao Qin. <a
+href="http://dx.doi.org/10.1016/j.entcs.2008.04.051">Separation Logic for
+Multiple Inheritance</a>. The First International Conference on Foundations of
+Informatics, Computing and Software (FICS'08). June 3 - 6, 2008. Shanghai,
+China. Electronic Notes in Theoretical Computer Science, 212:27-40.
+</li>
+  
+ <li>[POPL08] Wei-Ngan Chin, Cristina David, Huu Hai Nguyen, and
+   Shengchao Qin. <a href="./papers/popl08.pdf">Enhancing Modular OO
+   Verification with Separation Logic</a>. The 35th ACM SIGPLAN-SIGACT
+   Symposium on Principles of Programming Languages (POPL 2008). San
+   Francisco, USA. January 10-12, 2008. The ACM Press.  
+</li>
+
+  <li>[HASE07] Wei-Ngan Chin, Cristina David, Huu Hai Nguyen, and
+    Shengchao Qin. <a href="./papers/hase07.pdf">Multiple Pre/Post
+    Specifications for Heap-Manipulating Methods</a>. 10th IEEE High
+    Assurance Systems Engineering Symposium (HASE'07). Dallas,
+    Texas. November 14-16, 2007. IEEE CS Press. 
+  </li> 
+  
+ <li>[ICECCS07a] Shengchao Qin and Guanhua He. <a
+href="./papers/iceccs07-oz2specs.pdf">Linking Object-Z with Spec#</a>. 12th
+IEEE International Conference on Engineering of Complex Computer Systems
+(ICECCS'07). Pages 185-196. Auckland, New Zealand. July 2007. IEEE CS Press.
+ISBN: 0-7695-2895-3.
+</li>
+
+<li> [TASE07] Hai H. Wang, Shengchao Qin, Jun Sun and Jin Song
+  Dong. <a href="./papers/tase07.pdf">Realizing Live Sequence Charts
+  in SystemVerilog</a>. 1st IEEE/IFIP International Symposium on
+  Theoretical Aspects of Software Engineering (TASE'07). Pages
+  379-388. Shanghai, China. June 2007. IEEE CS Press. ISBN: 978-0-7695-2856-4. 
+</li> 
+
+<li>[ICECCS07b]
+Wei-Ngan Chin, Cristina David, Huu
+Hai Nguyen, and Shengchao Qin. <a href="./papers/iceccs07-verify.pdf">Automated
+Verification of Shape, Size and Bag Properties</a>. 12th IEEE International
+Conference on Engineering of Complex Computer Systems (ICECCS'07). Pages
+307-320. Auckland, New Zealand. July 2007. IEEE CS Press. ISBN: 0-7695-2895-3.
+</li>
+
+<li>[VMCAI07]
+Huu Hai Nguyen, Cristina David,
+Shengchao Qin, and Wei-Ngan Chin. <a href="./papers/vmcai07.pdf">Automated
+Verification of Shape and Size Properties via Separation Logic</a>. VMCAI'07.
+Nice, France. January 2007. Lecture Notes in Computer Science 4349,
+Springer-Verlag.<!--(<a
+href="http://loris-7.ddns.comp.nus.edu.sg/%7Enguyenh2/ShapeSize">demo</a>)-->
+</li>
+
+  <li>[SAS05] W.-N. Chin, H. H. Nguyen, S. Qin, and
+    M. Rinard, <a href="./papers/sas05-main.pdf">Memory  
+    Usage Verification for OO Programs</a>. The 12th International
+    Static Analysis Symposium (SAS 05), London, UK. September
+    2005. Lecture Notes in Computer Science 3672,
+    Springer-Verlag. ISBN: 3-540-28584-9.
+<a href="http://www.dur.ac.uk/shengchao.qin/papers/sas05-main.pdf"></a>   
+  </li>
+  <li>[ICSE05] W.-N. Chin, S.-C. Khoo, S. Qin, C. Popeea, and
+    H. H. Nguyen, <a href="./papers/icse05.pdf">Verifying Safety
+    Policies with Size Properties and Alias Controls</a>. 27th
+    International Conference on Software Engineering (ICSE 05), 15-21
+    May, 2005. St. Louis, Missouri, USA. ISBN:1-59593-963-2. </li> 
+  <li>[PLDI04] W.-N. Chin, F. Craciun, S. Qin and
+    M. Rinard, <a href="./papers/pldi04.pdf">Region Inference 
+    for an Object-Oriented Language</a>, <i>ACM SIGPLAN 2004
+    Conference on Programming Language Design and Implementation</i>
+    (PLDI 04), June 9-11, 2004, Washington, DC,
+    USA. ISBN:1-58113-807-5.</li> 
+</ul>
+
+</body>
+</html>
